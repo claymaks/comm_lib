@@ -23,4 +23,7 @@ def input(channel):
     return random.choice((HIGH,LOW))
 
 
+def output(channel, state):
+    print(channel, state)
+    pass
           
