@@ -13,8 +13,9 @@ def disable(io, exceptions=[]):
     for c,i in io:
         if c not in exceptions:
             GPIO.output(c, GPIO.LOW)
+            #print(c, "LOW")
 
-io = [[11,"1071402628"], [13,"9024615418"], [13,None]]
+io = [[15,"1071402628"], [11,"9024615418"], [13,None]]
 for c,i in io:
     GPIO.setup(c, GPIO.OUT)
 
@@ -50,7 +51,6 @@ def rfid():
     
     # Get the UID of the card
     (status,uid) = MIFAREReader.MFRC522_Anticoll()
-
     # If we have the UID, continue
     if status == MIFAREReader.MI_OK:
 
@@ -58,6 +58,7 @@ def rfid():
         bump(scanned_card, "%s%s%s%s" % (uid[0], uid[1], uid[2], uid[3]))
         if dif(scanned_card):
             print(scanned_card[0])
+        #print(scanned_card[0])
     
         # This is the default key for authentication
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
